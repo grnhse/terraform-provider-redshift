@@ -1,6 +1,7 @@
 package redshift
 
 import (
+	"fmt"
 	"log"
 	"strconv"
 
@@ -37,6 +38,7 @@ func dataSourceRedshiftSchemaReadByName(d *schema.ResourceData, meta interface{}
 	err := redshiftClient.QueryRow("select oid, nspowner from pg_namespace where nspname = $1", name).Scan(&oid, &owner)
 
 	if err != nil {
+		err = fmt.Errorf("could not find schema %s %w", name, err)
 		log.Print(err)
 		return err
 	}
