@@ -1,7 +1,7 @@
 TEST?=$$(go list ./... |grep -v 'vendor')
 GOFMT_FILES?=$$(find . -name '*.go' |grep -v vendor)
 
-VERSION=v0.0.2
+VERSION=v0.0.3
 SHORT_GIT_SHA:=$(shell git rev-parse HEAD | cut -c-7)
 
 BIN_NAME=terraform-provider-redshift_$(VERSION)-gh-$(SHORT_GIT_SHA)
